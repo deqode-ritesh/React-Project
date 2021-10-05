@@ -20,7 +20,11 @@ function ExpenseTracker(){
     const[TransactionList, setTransactionList] = useState([]);
     const[Income, setIncome] = useState(0);
     const[Expenses, setExpenses] = useState(0);
-   
+    
+    const Balance = (props) => {
+
+    
+    }    
     function addTransaction(event){
         event.preventDefault();
         if(!Validation()){
@@ -62,7 +66,7 @@ function ExpenseTracker(){
                                 <MainDiv className="shadow-lg p-3 mb-5 bg-body rounded">
                                      <h5 className="fs-5 mb-4">Expense Tracker</h5>
                                      <p className="fs-6 m-3 mb-0">Your Balance</p>
-                                     <p className="fs-5 m-3 mt-0">{(Income+Expenses)>0?('$'+(Income+Expenses)):'-'+('$'+Math.abs(Income+Expenses))}</p>
+                                     <p className="fs-5 m-3 mt-0">{(Income+Expenses)>=0?('$'+(Income+Expenses)):'-'+('$'+Math.abs(Income+Expenses))}</p>
                                      <div className="row shadow-sm p-3 mb-4 bg-body rounded text-center">
                                          <TransactionBorder className="col-6 ">
                                                 <p className="fs-6 mb-0">Income</p>
