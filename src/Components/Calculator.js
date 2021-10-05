@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import '../Calculator.css';
 import styles from "./calculator.module.css";
 
@@ -7,7 +7,7 @@ function Calculator(){
     const [prevValue,setPreviousVal] = useState(0);
     const [afterValue,setAfterVal] = useState(0);
     const [operand, setOperandVal] = useState('');
-    const [equalOperand, setEqualOperandVal] = useState(false);
+   // const [equalOperand, setEqualOperandVal] = useState(false);
     const [operationList, setOperationList] = useState([]);
     
     function gen4() {
@@ -51,7 +51,7 @@ function Calculator(){
        
     }
     function OnEqualClick(){
-        setEqualOperandVal(true); 
+       // setEqualOperandVal(true); 
         let output = '';
       
         if(afterValue && prevValue && operand){
@@ -67,7 +67,7 @@ function Calculator(){
         setAfterVal(prevState=>'');
         setPreviousVal(prevState=>output);
        }
-        setEqualOperandVal(false); 
+       // setEqualOperandVal(false); 
     }
     function changeFun(){
 
@@ -82,8 +82,7 @@ function Calculator(){
         return (<ul>
             {props.Operations.length>0?
             props.Operations.map((ops)=>(
-                
-                <li key={ops.id}>{ops.firstValue + ' ' + ops.operand + ' ' +ops.secondValue + ' ' +'='+ operations(Number(ops.firstValue),Number(ops.secondValue),ops.operand)}</li>
+                <li key={ops.id}>{ops.firstValue} {ops.operand} {ops.secondValue} {'='}{operations(Number(ops.firstValue),Number(ops.secondValue),ops.operand)}</li>
             )):''}
         </ul>);
     }    

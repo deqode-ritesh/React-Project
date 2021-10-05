@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.success-rightborder{
+  border-right: 4px solid #198754 !important;
+}
+.danger-rightborder{
+  border-right: 4px solid #dc3545 !important;
+}
+

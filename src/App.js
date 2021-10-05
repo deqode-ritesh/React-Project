@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import Login from "./Components/login/Login";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,6 +7,9 @@ import {
   Link
 } from "react-router-dom";
 import Calculator from './Components/Calculator';
+import Login from "./Components/login/Login";
+import ExpenseTracker from "./Components/ExpenseTracker";
+import StyledComponent from './Components/StyledComponent';
 
 function App() {
   return (
@@ -21,6 +23,14 @@ function App() {
             <li>
               <Link to="/calc">Calculator</Link>
             </li>
+            <li>
+              <Link to="/styled">styled</Link>
+            </li>
+            <li>
+              <Link to="/expensetracker">Expense Tracker</Link>
+            </li>
+
+            
           </ul>
         </nav>
 
@@ -30,9 +40,17 @@ function App() {
           <Route path="/calc">
             <Calculator />
           </Route>
+         
+          <Route path="/styled">
+            <StyledComponent />
+          </Route>
+          <Route path="/expensetracker">
+            <ExpenseTracker />
+          </Route>
           <Route path="/">
             <Login />
           </Route>
+          
         </Switch>
       </div>
     </Router>
