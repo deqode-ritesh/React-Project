@@ -15,40 +15,39 @@ function ExpenseTracker(){
                 text_value:'',
                 amount:''
         }
-    const[transactionArray, setTransactionArray] = useState(field);
-    const[transactionFormErrorArray, setTransactionFormErrorArray] = useState(field);
+        const errorField= {text_value:'',amount:''};
+    const[TransactionArray, setTransactionArray] = useState(field);
+    const[transactionFormErrorArray, setTransactionFormErrorArray] = useState(errorField);
     const[TransactionList, setTransactionList] = useState([]);
     const[Income, setIncome] = useState(0);
     const[Expenses, setExpenses] = useState(0);
     
-    const Balance = (props) => {
-
-    
-    }    
+        
     function addTransaction(event){
         event.preventDefault();
         if(!Validation()){
           return '';
         }
 
-        transactionArray.id = SimpleUniqueId('List-');
+        TransactionArray.id = SimpleUniqueId('List-');
         let trasctArray = [];
         trasctArray = TransactionList;
-        trasctArray.push(transactionArray);
+        trasctArray.push(TransactionArray);
         setTransactionList(trasctArray);
-        if(transactionArray.amount>0){
-             setIncome(prevState=>prevState+Number(transactionArray.amount));   
+        if(TransactionArray.amount>0){
+             setIncome(prevState=>prevState+Number(TransactionArray.amount));   
         }else{
-             setExpenses(prevState=>prevState+Number(transactionArray.amount));     
+             setExpenses(prevState=>prevState+Number(TransactionArray.amount));     
         }
-        setTransactionArray(field);      
+        setTransactionArray({...field});      
      }    
     function changeFun(event){
-           setTransactionArray({...transactionArray,[event.target.name]:event.target.value});    
+           setTransactionArray({...TransactionArray,[event.target.name]:event.target.value});    
      }
     function Validation(){
-        let Response = Validate(transactionArray,transactionFormErrorArray);
-        setTransactionFormErrorArray(Response.field);
+        let Response = Validate(TransactionArray,transactionFormErrorArray);
+        setTransactionFormErrorArray({...Response.field});
+        console.log(transactionFormErrorArray);
        if(!Response.count){
                 return true;
         }
@@ -93,11 +92,13 @@ function ExpenseTracker(){
                                         <form onSubmit={(e)=>addTransaction(e)}>
                                         <div>
                                               <label className="form-label">Text</label>
-                                              <input type="text" name="text_value" value={transactionArray.text_value} className="form-control" onChange={changeFun} />
+                                              <input type="text" name="text_value" value={TransactionArray.text_value} className="form-control" onChange={changeFun} />
+                                              <p className="text-danger">{transactionFormErrorArray.text_value}</p>          
                                         </div>
                                         <div>
                                               <label className="form-label">Amount</label>
-                                              <input type="number" name="amount" value={transactionArray.amount} className="form-control" onChange={changeFun} />
+                                              <input type="number" name="amount" value={TransactionArray.amount} className="form-control" onChange={changeFun} />
+                                              <p className="text-danger">{transactionFormErrorArray.amount}</p>          
                                         </div>
                                         <div className="clearfix"></div>
                                         <div className="mt-4">
